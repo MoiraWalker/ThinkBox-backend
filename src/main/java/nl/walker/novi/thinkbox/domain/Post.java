@@ -22,7 +22,6 @@ public class Post {
     private PostType type;
 
     public Post(){
-
     }
 
     public Post(String title, PostType type) {
