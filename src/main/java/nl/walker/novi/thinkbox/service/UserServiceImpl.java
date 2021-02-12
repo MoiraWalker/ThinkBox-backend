@@ -1,12 +1,16 @@
 package nl.walker.novi.thinkbox.service;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.exception.DatabaseErrorException;
 import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
 import nl.walker.novi.thinkbox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.DatatypeConverter;
 import java.util.List;
 
 @Service
@@ -64,4 +68,5 @@ public class UserServiceImpl implements UserService {
             throw new RecordNotFoundException();
         }
     }
+
 }

@@ -27,11 +27,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getAllProjects() {
 
-        // Ook de token binnenkrijgen.
-        // gebruikersnaam uit token halen
+        // De token binnenkrijgen.
+        // Gebruikersnaam uit token halen
         // Id ophalen die bij gebruikersnaam hoort.
-        // via projectrepository findByUserId();
-         // k
+        // Via projectrepository findByUserId();
 
         List<Project> projects = projectRepository.findAll();
 

@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -18,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/users")
-    // @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROlE_ADMIN')")
     public ResponseEntity<Object> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
