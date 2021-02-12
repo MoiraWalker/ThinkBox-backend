@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
         // gebruikersnaam uit token halen
         // Id ophalen die bij gebruikersnaam hoort.
         // via projectrepository findByUserId();
-         //
+         // k
 
         List<Project> projects = projectRepository.findAll();
 
