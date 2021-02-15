@@ -9,7 +9,10 @@ import java.io.IOException;
 @Service
 public class FileUploadService {
 
+    public static String uploadDirectory = System.getProperty("user.dir") + "/fileUploads/";
+
     public void uploadFile(MultipartFile file ) throws IOException {
-        file.transferTo(new File("C:\\Users\\moira\\Downloads\\uploads\\"+file.getOriginalFilename()));
+       // file.transferTo(new File("C:\\Users\\moira\\Downloads\\uploads\\"+file.getOriginalFilename()));
+        file.transferTo(new File(uploadDirectory + file.getOriginalFilename() ));
     }
 }
