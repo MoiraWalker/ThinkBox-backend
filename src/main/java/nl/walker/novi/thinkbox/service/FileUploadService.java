@@ -10,6 +10,6 @@ import java.io.IOException;
 public class FileUploadService {
 
     public void uploadFile(MultipartFile file ) throws IOException {
-        file.transferTo(new File("C:\\Users\\moira\\Downloads\\"+file.getOriginalFilename()));
+        file.transferTo(new File("C:\\Users\\moira\\Downloads\\uploads\\"+file.getOriginalFilename()));
     }
 }
