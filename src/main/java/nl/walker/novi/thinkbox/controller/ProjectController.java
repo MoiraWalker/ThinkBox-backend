@@ -10,37 +10,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
 
+   // @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/projects")
     public ResponseEntity<Object> getAllProjects() {
         List<Project> projects = projectService.getAllProjects();
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
+  //  @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/projects/{id}")
     public ResponseEntity<Object> getProjectById(@PathVariable("id") long id) {
         Project project = projectService.getProjectById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
+    //@PreAuthorize("hasRole('USER')")
     @DeleteMapping(value = "/projects/{id}")
     public ResponseEntity<Object> deleteProject(@PathVariable("id") long id) {
         projectService.deleteProject(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    //@PreAuthorize("hasRole('USER')")
     @PostMapping(value = "/projects")
     public ResponseEntity<Object> saveProjects(@RequestBody Project project) {
         long newId = projectService.saveProject(project);
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
+    // @PreAuthorize("hasRole('USER')")
     @PutMapping(value = "/projects/{id}")
     public ResponseEntity<Object> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
         projectService.updateProject(id, project);

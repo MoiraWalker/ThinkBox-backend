@@ -1,5 +1,6 @@
 package nl.walker.novi.thinkbox.controller;
 import nl.walker.novi.thinkbox.domain.Thought;
+import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.service.ThoughtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,10 +42,10 @@ public class ThoughtController {
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
+
     @PutMapping(value = "/thoughts/{id}")
     public ResponseEntity<Object> updateThought(@PathVariable("id") int id, @RequestBody Thought thought) {
         thoughtService.updateThought(id, thought);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

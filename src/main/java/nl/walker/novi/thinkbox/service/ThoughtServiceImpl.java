@@ -53,7 +53,7 @@ public class ThoughtServiceImpl implements ThoughtService {
                 Thought existingThought = thoughtRepository.findById(id).orElse(null);
                 existingThought.setTitle(thought.getTitle());
                 existingThought.setType(thought.getType());
-                existingThought.getDescription();
+                existingThought.setDescription(thought.getDescription());
                 thoughtRepository.save(existingThought);
             }
             catch (Exception ex) {
