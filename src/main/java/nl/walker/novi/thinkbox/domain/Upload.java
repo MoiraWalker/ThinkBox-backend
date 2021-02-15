@@ -1,11 +1,13 @@
 package nl.walker.novi.thinkbox.domain;
 import javax.persistence.*;
+import java.io.File;
+import java.util.List;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "post")
-public class Post {
+@Table(name = "upload")
+public class Upload {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,25 +16,19 @@ public class Post {
     @Column(name = "title" )
     private String title;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "post_type" )
-    private PostType type;
+    @Column(name = "file" )
+    private File file;
 
-    public Post(){
+//    @OneToOne (fetch = FetchType.LAZY, mappedBy = "upload")
+//    private Work work;
+
+    public Upload(){
     }
 
-    public Post(String title, PostType type) {
+    public Upload(long id, String title, File file) {
+        this.id = id;
         this.title = title;
-        this.type = type;
-    }
-
-
-    public PostType getType() {
-        return type;
-    }
-
-    public void setType(PostType type) {
-        this.type = type;
+        this.file = file;
     }
 
     public long getId() {
@@ -50,4 +46,14 @@ public class Post {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+
 }
