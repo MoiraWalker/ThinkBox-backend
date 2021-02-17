@@ -1,4 +1,5 @@
 package nl.walker.novi.thinkbox.controller;
+
 import nl.walker.novi.thinkbox.domain.Project;
 import nl.walker.novi.thinkbox.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,14 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-   // @PreAuthorize("hasRole('USER')")
+    // @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/projects")
     public ResponseEntity<Object> getAllProjects() {
         List<Project> projects = projectService.getAllProjects();
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
-  //  @PreAuthorize("hasRole('USER')")
+    // @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/projects/{id}")
     public ResponseEntity<Object> getProjectById(@PathVariable("id") long id) {
         Project project = projectService.getProjectById(id);

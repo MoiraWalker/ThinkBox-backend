@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "project")
 public class Project {
 
     @Id
@@ -19,9 +18,19 @@ public class Project {
     @Column(name = "private_view")
     private Boolean privateView;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     @JsonIgnore
     private User user;
+
+    public Project() {
+    }
+
+    public Project(Long id, String title, Boolean privateView, User user) {
+        this.id = id;
+        this.title = title;
+        this.privateView = privateView;
+        this.user = user;
+    }
 
     public User getUser() {
         return user;

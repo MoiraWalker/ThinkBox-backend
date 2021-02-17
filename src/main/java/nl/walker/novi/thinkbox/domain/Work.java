@@ -1,19 +1,11 @@
 package nl.walker.novi.thinkbox.domain;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.File;
 
 @Entity
-@Table(name = "work")
 public class Work extends Post {
     private String description;
     private String link;
- //   private Upload upload;
-
-//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "work")
-//    private Upload upload;
 
     public Work() {
 
@@ -44,12 +36,5 @@ public class Work extends Post {
     public void setLink(String link) {
         this.link = link;
     }
-
-//    public Upload getUpload() {
-//        return upload;
-//    }
-//
-//    public void setUpload(Upload upload) {
-//        this.upload = upload;
-//    }
+    
 }

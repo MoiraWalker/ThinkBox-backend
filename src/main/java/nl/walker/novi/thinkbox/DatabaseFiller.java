@@ -1,24 +1,14 @@
 package nl.walker.novi.thinkbox;
-
 import  nl.walker.novi.thinkbox.payload.request.SignupRequest;
 import  nl.walker.novi.thinkbox.service.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import nl.walker.novi.thinkbox.domain.Project;
 
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * In deze klasse voegen we drie gebruikers met één rol toe en eentje met allen:
- * admin, admin@admin.nl, 123456, ROL: admin
- * mod, mod@mod.nl, 123456, ROL: mod
- * user, user@user.nl, 123456, ROL: user
- * superuser, super@user.nl, 123456, ROLLEN: Admin, mod, user
- *
- * UITLEG COMPONENT ANNOTATIE
- * http://zetcode.com/springboot/component/
- */
 @Component
 public class DatabaseFiller implements CommandLineRunner {
 
@@ -50,5 +40,10 @@ public class DatabaseFiller implements CommandLineRunner {
         rollen.add("user");
         user.setRole(rollen);
         authorizationService.registerUser(user);
+
+        Project project = new Project();
+        project.setTitle("Project admin");
+        project.setPrivateView(true);
+
     }
 }
