@@ -8,8 +8,10 @@ import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
 import nl.walker.novi.thinkbox.repository.ProjectRepository;
 import nl.walker.novi.thinkbox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,18 +26,35 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private UserRepository userRepository;
 
+//    @Override
+//    public List<Project> getAllProjects() {
+//
+//        // De token binnenkrijgen.
+//        // Gebruikersnaam uit token halen
+//        // Id ophalen die bij gebruikersnaam hoort.
+//        // Via projectrepository findByUserId();
+//
+//        List<Project> projects = projectRepository.findAll();
+//
+//        return projects;
+//    }
+
     @Override
-    public List<Project> getAllProjects() {
+    public List<Project> getAllProjectsForUser(Principal principal) {
 
         // De token binnenkrijgen.
         // Gebruikersnaam uit token halen
         // Id ophalen die bij gebruikersnaam hoort.
         // Via projectrepository findByUserId();
 
-        List<Project> projects = projectRepository.findAll();
+
+        Long userId = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getId();
+        // List<Project> projects = projectRepository.findAll();
+        List<Project> projects = projectRepository.findAllByUserId(userId);
 
         return projects;
     }
+
 
     @Override
     public Project getProjectById(long id) {

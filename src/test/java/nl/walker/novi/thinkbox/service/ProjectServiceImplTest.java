@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 
 
 @SpringBootTest()
@@ -31,19 +32,35 @@ public class ProjectServiceImplTest {
     @MockBean
     private ProjectRepository projectRepository;
 
-    @Mock
-    Project project;
 
     @BeforeEach
     void setUp() {
-        User user = new User();
-        Project project = new Project(1L, "title", false, user);
+//        User user1 = new User();
     }
 
+    @Mock
+    Project project;
+
     @Test
-    void getProjectById() {
-        Mockito.when(projectService.getProjectById(1L))
-                .thenReturn(project);
+    public void getProjectByIdShouldReturnProject1() {
+        User user1 = new User();
+        Project project1 = new Project(1L, "title", false, user1);
+
+        Mockito.when(projectService.getProjectById(1)).
+                thenReturn(project1);
+
+        assertEquals(1L, project.getId());
+
     }
+
+
+//    @Test
+//    public void saveProjectOK() {
+//        User user1 = new User();
+//        Project newProject = new Project(1L, "title", false, user1);
+//
+//        Mockito.when(projectService.saveProject(any(Project.class))).thenReturn(newProject);
+//
+//    }
 
 }
