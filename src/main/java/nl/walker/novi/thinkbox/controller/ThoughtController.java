@@ -18,24 +18,28 @@ public class ThoughtController {
     @Autowired
     private ThoughtService thoughtService;
 
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/thoughts")
     public ResponseEntity<Object> getAllThoughts() {
         List<Thought> thoughts = thoughtService.getAllThoughts();
         return new ResponseEntity<>(thoughts, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/thoughts/{id}")
     public ResponseEntity<Object> getThoughtsById(@PathVariable("id") long id) {
         Thought thought = thoughtService.getThoughtById(id);
         return new ResponseEntity<>(thought, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping(value = "/thoughts/{id}")
     public ResponseEntity<Object> deleteThought(@PathVariable("id") long id) {
         thoughtService.deleteThought(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/thoughts")
     public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
         long newId = thoughtService.saveThought(thought);
@@ -43,6 +47,7 @@ public class ThoughtController {
     }
 
 
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PutMapping(value = "/thoughts/{id}")
     public ResponseEntity<Object> updateThought(@PathVariable("id") int id, @RequestBody Thought thought) {
         thoughtService.updateThought(id, thought);

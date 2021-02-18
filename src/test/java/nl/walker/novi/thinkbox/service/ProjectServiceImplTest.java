@@ -7,6 +7,7 @@ import nl.walker.novi.thinkbox.repository.ProjectRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -15,21 +16,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.mock;
 
 
 @SpringBootTest()
 @ContextConfiguration(classes={ThinkboxApplication.class})
-public class ProjectServiceImplTest {
+class ProjectServiceImplTest {
 
-    @MockBean
-    private ProjectService projectService;
+    @InjectMocks
+    private ProjectServiceImpl projectService;
 
-    @MockBean
+    @Mock
     private ProjectRepository projectRepository;
 
 
@@ -44,10 +50,14 @@ public class ProjectServiceImplTest {
     @Test
     public void getProjectByIdShouldReturnProject1() {
         User user1 = new User();
-        Project project1 = new Project(1L, "title", false, user1);
+        Project p = new Project();
+        p.setId(1L);
 
-        Mockito.when(projectService.getProjectById(1)).
-                thenReturn(project1);
+        Project project1 = new Project(1L, "title", false, user1);
+        Mockito.when(projectRepository.existsById(anyLong())).thenReturn(true);
+        Mockito.when(projectRepository.findById(anyLong())).thenReturn(Optional.of(p));
+
+        Project project = projectService.getProjectById(1);
 
         assertEquals(1L, project.getId());
 
