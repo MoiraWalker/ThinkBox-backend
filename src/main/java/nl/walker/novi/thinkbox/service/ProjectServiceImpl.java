@@ -31,7 +31,6 @@ public class ProjectServiceImpl implements ProjectService {
 
 //    @Override
 //    public List<Project> getAllProjects() {
-//
 //        // De token binnenkrijgen.
 //        // Gebruikersnaam uit token halen
 //        // Id ophalen die bij gebruikersnaam hoort.
