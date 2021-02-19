@@ -4,6 +4,7 @@ package nl.walker.novi.thinkbox.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -21,6 +22,9 @@ public class Project {
     @ManyToOne (fetch = FetchType.EAGER)
     @JsonIgnore
     private User user;
+
+    @OneToMany
+    private List<Post> posts;
 
     public Project() {
     }
@@ -63,4 +67,6 @@ public class Project {
     public void setPrivateView(Boolean privateView) {
         this.privateView = privateView;
     }
+
+
 }

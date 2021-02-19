@@ -15,8 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +46,15 @@ public class ProjectServiceImpl implements ProjectService {
         return projects;
     }
 
+    @Override
+    public long saveProject(Project project, Principal principal) {
+        String currentUserName = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUsername();
+        Optional<User> optUser = userRepository.findByUsername(currentUserName);
+        project.setUser(optUser.get());
+
+        return projectRepository.save(project).getId();
+    }
+
 
     @Override
     public Project getProjectById(long id) {
@@ -69,12 +76,6 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
-    public long saveProject(Project project) {
-        Optional<User> optUser = userRepository.findByUsername("user");
-        project.setUser(optUser.get());
-        return projectRepository.save(project).getId();
-    }
 
     @Override
     public void updateProject(long id, Project project) {

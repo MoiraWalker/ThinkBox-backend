@@ -17,6 +17,9 @@ public class Post {
     @Column(name = "post_type" )
     private PostType type;
 
+    // TODO Annotatie en getters en setters
+    //    private Project project;
+
     public Post(){
     }
 

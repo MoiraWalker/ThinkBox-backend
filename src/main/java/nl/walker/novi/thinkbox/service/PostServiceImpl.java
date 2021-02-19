@@ -43,6 +43,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public long savePost(Post post) {
         Post newPost = postRepository.save(post);
+        // project ophalen, post toevoegen en dan opslaan
         return newPost.getId();
     }
 

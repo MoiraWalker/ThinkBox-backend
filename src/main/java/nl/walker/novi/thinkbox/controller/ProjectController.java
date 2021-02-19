@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -44,8 +43,8 @@ public class ProjectController {
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/projects")
-    public ResponseEntity<Object> saveProjects(@RequestBody Project project) {
-        long newId = projectService.saveProject(project);
+    public ResponseEntity<Object> saveProjects(@RequestBody Project project, Principal principal) {
+        long newId = projectService.saveProject(project, principal);
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
