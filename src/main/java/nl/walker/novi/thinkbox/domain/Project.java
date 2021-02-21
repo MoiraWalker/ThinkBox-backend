@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Project {
 
-    public Object saveProject;
+//    public Object saveProject;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
