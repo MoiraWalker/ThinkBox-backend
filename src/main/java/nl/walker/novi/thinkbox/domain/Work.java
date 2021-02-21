@@ -7,9 +7,9 @@ public class Work extends Post {
     private String description;
     private String link;
 
-    @Transient
-    private File fileupload;
-    private String fileuploadName;
+//    @Transient
+//    private File fileupload;
+//    private String fileuploadName;
 
     public Work() {
 

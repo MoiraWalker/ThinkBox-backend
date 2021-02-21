@@ -51,9 +51,11 @@ public class DatabaseFiller implements CommandLineRunner {
         authorizationService.registerUser(user2);
 
 
-        Project project = new Project();
-        project.setTitle("Project admin");
-        project.setPrivateView(true);
+
+//        Project project = new Project();
+//        project.setTitle("Project admin");
+//        project.setPrivateView(true);
+
 
     }
 }

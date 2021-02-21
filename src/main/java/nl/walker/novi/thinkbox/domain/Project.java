@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 public class Project {
 
+    public Object saveProject;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -67,6 +68,5 @@ public class Project {
     public void setPrivateView(Boolean privateView) {
         this.privateView = privateView;
     }
-
 
 }

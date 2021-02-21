@@ -54,6 +54,4 @@ public class ProjectController {
         projectService.updateProject(id, project);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }
