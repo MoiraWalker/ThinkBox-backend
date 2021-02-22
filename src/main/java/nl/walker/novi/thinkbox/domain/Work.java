@@ -6,23 +6,20 @@ import java.io.File;
 public class Work extends Post {
     private String description;
     private String link;
+    private String fileName;
 
-//    @Transient
-//    private File fileupload;
-//    private String fileuploadName;
+    @Transient
+    private File fileupload;
 
     public Work() {
 
     }
 
-    public Work(String description) {
-        this.description = description;
-    }
-
-    public Work(String title, PostType type, String description, String link) {
+    public Work(String title, PostType type, String description, String link, String fileName) {
         super(title, type);
         this.description = description;
         this.link = link;
+        this.fileName = fileName;
     }
 
     public String getDescription() {
