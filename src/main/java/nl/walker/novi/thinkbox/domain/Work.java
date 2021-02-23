@@ -11,8 +11,8 @@ public class Work extends Post {
 
     }
 
-    public Work(long id, String title, String projectId, PostType type, String description, String link) {
-        super(id, title, projectId, type);
+    public Work(long id, String title, String projectId, PostType type, User user, String description, String link) {
+        super(id, title, projectId, type, user);
         this.description = description;
         this.link = link;
     }

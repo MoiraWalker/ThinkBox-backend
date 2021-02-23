@@ -22,6 +22,10 @@ public class Post {
     @Column(name = "post_type" )
     private PostType type;
 
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JsonIgnore
+    private User user;
+
     // TODO Annotatie en getters en setters
     //    private Project project;
 
@@ -36,14 +40,15 @@ public class Post {
     public Post(){
     }
 
-    public Post(long id, String title, String projectId, PostType type) {
+    public Post(long id, String title, String projectId, PostType type, User user) {
         this.id = id;
         this.title = title;
         this.projectId = projectId;
         this.type = type;
+        this.user = user;
     }
 
-    // ### constructor met project
+// ### constructor met project
 //    public Post(long id, String title, String projectId, PostType type, Project project) {
 //        this.id = id;
 //        this.title = title;
@@ -84,11 +89,11 @@ public class Post {
         this.projectId = projectId;
     }
 
-//    public Project getProject() {
-//        return project;
-//    }
-//
-//    public void setProject(Project project) {
-//        this.project = project;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

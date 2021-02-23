@@ -51,7 +51,6 @@ public class ProjectServiceImpl implements ProjectService {
         String currentUserName = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUsername();
         Optional<User> optUser = userRepository.findByUsername(currentUserName);
         project.setUser(optUser.get());
-
         return projectRepository.save(project).getId();
     }
 

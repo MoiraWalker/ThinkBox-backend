@@ -11,8 +11,8 @@ public class Thought extends Post {
 
     }
 
-    public Thought(long id, String title, String projectId, PostType type, String description) {
-        super(id, title, projectId, type);
+    public Thought(long id, String title, String projectId, PostType type, User user, String description) {
+        super(id, title, projectId, type, user);
         this.description = description;
     }
 

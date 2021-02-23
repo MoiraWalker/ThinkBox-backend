@@ -1,13 +1,19 @@
 package nl.walker.novi.thinkbox.service;
 
 import nl.walker.novi.thinkbox.domain.Post;
+import nl.walker.novi.thinkbox.domain.Project;
+import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.exception.DatabaseErrorException;
 import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
 import nl.walker.novi.thinkbox.repository.PostRepository;
+import nl.walker.novi.thinkbox.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -15,10 +21,27 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+//    @Override
+//    public List<Post> getAllPosts() {
+//        return postRepository.findAll();
+//    }
+
     @Override
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<Post> getAllPosts(Principal principal) {
+        Long userId = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getId();
+        List<Post> posts = postRepository.findAllByUserId(userId);
+        return posts;
     }
+
+//    @Override
+//    public List<Project> getAllProjectsForUser(Principal principal) {
+//        Long userId = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getId();
+//        List<Project> projects = projectRepository.findAllByUserId(userId);
+//        return projects;
+//    }
 
     @Override
     public Post getPostById(long id) {
@@ -40,12 +63,21 @@ public class PostServiceImpl implements PostService {
         }
     }
 
+//    @Override
+//    public long savePost(Post post) {
+//        Post newPost = postRepository.save(post);
+//        // project ophalen, post toevoegen en dan opslaan
+//        return newPost.getId();
+//    }
+
     @Override
-    public long savePost(Post post) {
-        Post newPost = postRepository.save(post);
-        // project ophalen, post toevoegen en dan opslaan
-        return newPost.getId();
+    public long savePost(Post post, Principal principal) {
+        String currentUserName = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUsername();
+        Optional<User> optUser = userRepository.findByUsername(currentUserName);
+        post.setUser(optUser.get());
+        return postRepository.save(post).getId();
     }
+
 
     @Override
     public void updatePost(long id, Post post) {
