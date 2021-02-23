@@ -7,20 +7,22 @@ public class Work extends Post {
     private String description;
     private String link;
 
-//    @Transient
-//    private File fileupload;
-//    private String fileuploadName;
-
     public Work() {
 
     }
-
 
     public Work(long id, String title, String projectId, PostType type, String description, String link) {
         super(id, title, projectId, type);
         this.description = description;
         this.link = link;
     }
+
+    //  ##### constructor met project
+//    public Work(long id, String title, String projectId, PostType type, Project project, String description, String link) {
+//        super(id, title, projectId, type, project);
+//        this.description = description;
+//        this.link = link;
+//    }
 
     public String getDescription() {
         return description;

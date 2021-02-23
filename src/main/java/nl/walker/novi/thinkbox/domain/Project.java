@@ -24,8 +24,9 @@ public class Project {
     @JsonIgnore
     private User user;
 
-    @OneToMany
-    private List<Post> posts;
+    // ### relatie poging
+//    @OneToMany (fetch = FetchType.LAZY, mappedBy = "project")
+//    private List<Post> posts;
 
     public Project() {
     }
@@ -69,5 +70,12 @@ public class Project {
         this.privateView = privateView;
     }
 
+//    public List<Post> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setPosts(List<Post> posts) {
+//        this.posts = posts;
+//    }
 }
 

@@ -1,4 +1,6 @@
 package nl.walker.novi.thinkbox.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -23,6 +25,13 @@ public class Post {
     // TODO Annotatie en getters en setters
     //    private Project project;
 
+    // ### relatie pogingen
+//    @ManyToOne (fetch = FetchType.EAGER)
+//    @JsonIgnore
+//    private Project project;
+
+//    @OneToOne(mappedBy = "project")
+//    private Project project;
 
     public Post(){
     }
@@ -33,6 +42,15 @@ public class Post {
         this.projectId = projectId;
         this.type = type;
     }
+
+    // ### constructor met project
+//    public Post(long id, String title, String projectId, PostType type, Project project) {
+//        this.id = id;
+//        this.title = title;
+//        this.projectId = projectId;
+//        this.type = type;
+//        this.project = project;
+//    }
 
     public PostType getType() {
         return type;
@@ -65,4 +83,12 @@ public class Post {
     public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
+
+//    public Project getProject() {
+//        return project;
+//    }
+//
+//    public void setProject(Project project) {
+//        this.project = project;
+//    }
 }
