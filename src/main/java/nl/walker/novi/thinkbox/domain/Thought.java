@@ -11,10 +11,6 @@ public class Thought extends Post {
 
     }
 
-    public Thought(String description) {
-        this.description = description;
-    }
-
     public Thought(long id, String title, String projectId, PostType type, String description) {
         super(id, title, projectId, type);
         this.description = description;
