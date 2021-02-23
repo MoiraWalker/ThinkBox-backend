@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,35 +19,40 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PostMapping("/works/uploads")
+    public void uploadFile(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+        workService.uploadFile(file);
+    }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/works")
     public ResponseEntity<Object> getAllWorks() {
         List<Work> works = workService.getAllWorks();
         return new ResponseEntity<>(works, HttpStatus.OK);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/works/{id}")
     public ResponseEntity<Object> getWorksById(@PathVariable("id") long id) {
         Work work = workService.getWorkById(id);
         return new ResponseEntity<>(work, HttpStatus.OK);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping(value = "/works/{id}")
     public ResponseEntity<Object> deleteWorks(@PathVariable("id") long id) {
         workService.deleteWork(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/works")
     public ResponseEntity<Object> saveWork(@RequestBody Work work) {
         long newId = workService.saveWork(work);
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PutMapping(value = "/works/{id}")
     public ResponseEntity<Object> updateWork(@PathVariable("id") int id, @RequestBody Work work) {
         workService.updateWork(id, work);

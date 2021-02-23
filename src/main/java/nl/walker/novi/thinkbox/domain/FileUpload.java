@@ -41,11 +41,12 @@ public class FileUpload {
         this.title = title;
     }
 
-    public File getFileupload() {
+    public File getFileUpload() {
         return fileupload;
     }
 
-    public void setFileupload(File fileupload) {
+    public void setFileUpload(File fileupload) {
         this.fileupload = fileupload;
     }
+
 }

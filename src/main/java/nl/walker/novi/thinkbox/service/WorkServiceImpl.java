@@ -6,7 +6,10 @@ import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
 import nl.walker.novi.thinkbox.repository.WorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -14,6 +17,14 @@ public class WorkServiceImpl implements WorkService {
 
     @Autowired
     private WorkRepository workRepository;
+
+
+    public static String uploadDirectory = System.getProperty("user.dir") + "/fileUploads/";
+
+    @Override
+    public void uploadFile(MultipartFile file ) throws IOException {
+        file.transferTo(new File(uploadDirectory + file.getOriginalFilename() ));
+    }
 
     @Override
     public List<Work> getAllWorks() {
@@ -55,6 +66,7 @@ public class WorkServiceImpl implements WorkService {
                 existingWork.setType(work.getType());
                 existingWork.setLink(work.getLink());
                 existingWork.setDescription(work.getDescription());
+                existingWork.setFileName(work.getFileName());
                 workRepository.save(existingWork);
             }
             catch (Exception ex) {

@@ -37,5 +37,14 @@ public class Work extends Post {
     public void setLink(String link) {
         this.link = link;
     }
-    
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+
+    }
+
 }
