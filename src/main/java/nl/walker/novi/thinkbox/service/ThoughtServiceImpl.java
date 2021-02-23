@@ -54,6 +54,7 @@ public class ThoughtServiceImpl implements ThoughtService {
                 existingThought.setTitle(thought.getTitle());
                 existingThought.setType(thought.getType());
                 existingThought.setDescription(thought.getDescription());
+                existingThought.setProjectId(thought.getProjectId());
                 thoughtRepository.save(existingThought);
             }
             catch (Exception ex) {

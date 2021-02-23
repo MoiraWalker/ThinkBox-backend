@@ -13,22 +13,26 @@ public class Post {
     @Column(name = "title" )
     private String title;
 
+    @Column(name = "project_id" )
+    private String projectId;
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "post_type" )
     private PostType type;
 
     // TODO Annotatie en getters en setters
     //    private Project project;
-    //test
+
 
     public Post(){
     }
 
-    public Post(String title, PostType type) {
+    public Post(long id, String title, String projectId, PostType type) {
+        this.id = id;
         this.title = title;
+        this.projectId = projectId;
         this.type = type;
     }
-
 
     public PostType getType() {
         return type;
@@ -52,5 +56,13 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 }

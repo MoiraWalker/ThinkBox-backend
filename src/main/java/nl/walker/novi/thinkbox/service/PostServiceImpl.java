@@ -54,6 +54,7 @@ public class PostServiceImpl implements PostService {
                 Post existingPost = postRepository.findById(id).orElse(null);
                 existingPost.setTitle(post.getTitle());
                 existingPost.setType(post.getType());
+                existingPost.setProjectId(post.getProjectId());
                 postRepository.save(existingPost);
             }
             catch (Exception ex) {
