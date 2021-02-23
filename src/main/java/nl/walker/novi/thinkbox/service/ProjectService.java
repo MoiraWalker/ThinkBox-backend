@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface ProjectService {
 
-//    List<Project> getAllProjects();
     List<Project> getAllProjectsForUser(Principal principal);
     Project getProjectById(long id);
     void deleteProject(long id);
