@@ -19,9 +19,9 @@ public class PostController {
     private PostService postService;
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/posts")
-    public ResponseEntity<Object> getAllPosts(Principal principal) {
-        List<Post> posts = postService.getAllPosts(principal);
+    @GetMapping(value = "/posts/project/{projectId}")
+    public ResponseEntity<Object> getAllPostsForProject(@PathVariable("projectId") long projectId) {
+        List<Post> posts = postService.getAllPostsForProject(projectId);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
@@ -41,8 +41,8 @@ public class PostController {
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/posts")
-    public ResponseEntity<Object> savePost(@RequestBody Post post, Principal principal) {
-        long newId = postService.savePost(post, principal);
+    public ResponseEntity<Object> savePost(@RequestBody Post post, @RequestBody long currentProjectId) {
+        long newId = postService.savePost(post, currentProjectId);
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 

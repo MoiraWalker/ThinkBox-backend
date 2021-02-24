@@ -16,5 +16,6 @@ import java.util.Optional;
 
 //NoRepositoryBean
 public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findAllByUserId(Long userId);
+    List<Post> findAllByProject(Project project);
+
 }

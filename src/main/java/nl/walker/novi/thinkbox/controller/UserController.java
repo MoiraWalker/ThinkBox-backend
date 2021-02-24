@@ -32,12 +32,6 @@ public class UserController {
 //        return new ResponseEntity<>(user, HttpStatus.OK);
 //    }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/users/username/{username}")
-    public ResponseEntity<Object> getUserByUserName(@PathVariable("username") String username) {
-        User user = userService.getUserByUserName(username);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping(value = "/users/{id}")
@@ -58,12 +52,5 @@ public class UserController {
         userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-//    @PutMapping(value = "/users/username/{username}")
-//    public ResponseEntity<Object> updateUserByUserName(@PathVariable("username") String username, @RequestBody User user) {
-//        userService.updateUserByUserName(username, user);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 
 }

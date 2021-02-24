@@ -83,6 +83,7 @@ public class ProjectServiceImpl implements ProjectService {
                 Project existingProject = projectRepository.findById(id).orElse(null);
                 existingProject.setTitle(project.getTitle());
                 existingProject.setPrivateView(project.getPrivateView());
+                existingProject.setPosts(project.getPosts());
                 projectRepository.save(existingProject);
             }
             catch (Exception ex) {

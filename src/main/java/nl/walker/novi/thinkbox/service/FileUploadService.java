@@ -2,7 +2,7 @@ package nl.walker.novi.thinkbox.service;
 import nl.walker.novi.thinkbox.domain.FileUpload;
 import nl.walker.novi.thinkbox.exception.DatabaseErrorException;
 import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
-import nl.walker.novi.thinkbox.repository.FileUploadRepository;
+//import nl.walker.novi.thinkbox.repository.FileUploadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class FileUploadService {
 
-    @Autowired
-    private FileUploadRepository fileUploadRepository;
+//    @Autowired
+//    private FileUploadRepository fileUploadRepository;
 
     public static String uploadDirectory = System.getProperty("user.dir") + "/fileUploads/";
 

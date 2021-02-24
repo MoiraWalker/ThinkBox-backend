@@ -1,4 +1,5 @@
 package nl.walker.novi.thinkbox.domain;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -15,37 +16,35 @@ public class Post {
     @Column(name = "title" )
     private String title;
 
-    @Column(name = "project_id" )
-    private String projectId;
+    @Column(name = "current_project_id" )
+    private long currentProjectId;
+
+
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "post_type" )
     private PostType type;
 
-    @ManyToOne (fetch = FetchType.EAGER)
-    @JsonIgnore
-    private User user;
+//    @ManyToOne (fetch = FetchType.EAGER)
+//    @JsonIgnore
+//    private User user;
 
     // TODO Annotatie en getters en setters
     //    private Project project;
 
     // ### relatie pogingen
-//    @ManyToOne (fetch = FetchType.EAGER)
-//    @JsonIgnore
-//    private Project project;
-
-//    @OneToOne(mappedBy = "project")
-//    private Project project;
+    @ManyToOne
+    @JsonBackReference
+    private Project project;
 
     public Post(){
     }
 
-    public Post(long id, String title, String projectId, PostType type, User user) {
+    public Post(long id, String title, long currentProjectId, PostType type) {
         this.id = id;
         this.title = title;
-        this.projectId = projectId;
+        this.currentProjectId = currentProjectId;
         this.type = type;
-        this.user = user;
     }
 
 // ### constructor met project
@@ -81,19 +80,20 @@ public class Post {
         this.title = title;
     }
 
-    public String getProjectId() {
-        return projectId;
+
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
-    public User getUser() {
-        return user;
+    public long getCurrentProjectId() {
+        return currentProjectId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCurrentProjectId(long currentProjectId) {
+        this.currentProjectId = currentProjectId;
     }
 }

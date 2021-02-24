@@ -55,7 +55,6 @@ public class WorkServiceImpl implements WorkService {
                 existingWork.setType(work.getType());
                 existingWork.setLink(work.getLink());
                 existingWork.setDescription(work.getDescription());
-                existingWork.setProjectId(work.getProjectId());
                 workRepository.save(existingWork);
             }
             catch (Exception ex) {

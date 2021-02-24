@@ -34,9 +34,6 @@ public class User {
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "user")
     private List<Project> projects;
 
-    @OneToMany (fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Post> posts;
-
     public User() {
 
     }
