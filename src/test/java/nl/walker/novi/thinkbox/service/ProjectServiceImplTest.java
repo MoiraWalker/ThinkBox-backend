@@ -61,7 +61,6 @@ class ProjectServiceImplTest {
         Project project = projectService.getProjectById(1);
 
         assertEquals(1L, project.getId());
-
     }
 
     @Test
@@ -70,6 +69,5 @@ class ProjectServiceImplTest {
         projectService.deleteProject(1L);
         Mockito.verify(projectRepository, times(1)).deleteById(1L);
     }
-
 
 }
