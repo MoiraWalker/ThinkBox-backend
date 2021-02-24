@@ -25,12 +25,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/users/{id}")
-    public ResponseEntity<Object> getUserById(@PathVariable("id") long id) {
-        User user = userService.getUserById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @GetMapping(value = "/users/{id}")
+//    public ResponseEntity<Object> getUserById(@PathVariable("id") long id) {
+//        User user = userService.getUserById(id);
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/users/username/{username}")
@@ -59,11 +59,11 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PutMapping(value = "/users/username/{username}")
-    public ResponseEntity<Object> updateUserByUserName(@PathVariable("username") String username, @RequestBody User user) {
-        userService.updateUserByUserName(username, user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @PutMapping(value = "/users/username/{username}")
+//    public ResponseEntity<Object> updateUserByUserName(@PathVariable("username") String username, @RequestBody User user) {
+//        userService.updateUserByUserName(username, user);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
 }

@@ -34,15 +34,15 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public User getUserByUserName(String username) {
-        if (userRepository.existsByUsername(username)) {
-            return userRepository.findByUsername(username).orElse(null);
-        }
-        else {
-            throw new RecordNotFoundException();
-        }
-    }
+//    @Override
+//    public User getUserByUserName(String username) {
+//        if (userRepository.existsByUsername(username)) {
+//            return userRepository.findByUsername(username).orElse(null);
+//        }
+//        else {
+//            throw new RecordNotFoundException();
+//        }
+//    }
 
     @Override
     public void deleteUser(long id) {
@@ -79,24 +79,24 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public void updateUserByUserName(String username, User user) {
-        if (userRepository.existsByUsername(username)) {
-            try {
-                User existingUser = userRepository.findByUsername(username).orElse(null);
-                existingUser.setUsername(user.getUsername());
-                existingUser.setEmail(user.getEmail());
-                existingUser.setPassword(user.getPassword());
-                userRepository.save(existingUser);
-            }
-            catch (Exception ex) {
-                throw new DatabaseErrorException();
-            }
-        }
-        else {
-            throw new RecordNotFoundException();
-        }
-    }
+//    @Override
+//    public void updateUserByUserName(String username, User user) {
+//        if (userRepository.existsByUsername(username)) {
+//            try {
+//                User existingUser = userRepository.findByUsername(username).orElse(null);
+//                existingUser.setUsername(user.getUsername());
+//                existingUser.setEmail(user.getEmail());
+//                existingUser.setPassword(user.getPassword());
+//                userRepository.save(existingUser);
+//            }
+//            catch (Exception ex) {
+//                throw new DatabaseErrorException();
+//            }
+//        }
+//        else {
+//            throw new RecordNotFoundException();
+//        }
+//    }
 
 
 }
