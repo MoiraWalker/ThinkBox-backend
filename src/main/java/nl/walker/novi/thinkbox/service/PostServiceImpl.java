@@ -24,6 +24,7 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private UserRepository userRepository;
 
+    // ## oude getAllPosts() methode
 //    @Override
 //    public List<Post> getAllPosts() {
 //        return postRepository.findAll();
@@ -35,13 +36,6 @@ public class PostServiceImpl implements PostService {
         List<Post> posts = postRepository.findAllByUserId(userId);
         return posts;
     }
-
-//    @Override
-//    public List<Project> getAllProjectsForUser(Principal principal) {
-//        Long userId = ((UserDetailsImpl) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getId();
-//        List<Project> projects = projectRepository.findAllByUserId(userId);
-//        return projects;
-//    }
 
     @Override
     public Post getPostById(long id) {
@@ -63,12 +57,14 @@ public class PostServiceImpl implements PostService {
         }
     }
 
+    // ## oude savePost methode
 //    @Override
 //    public long savePost(Post post) {
 //        Post newPost = postRepository.save(post);
 //        // project ophalen, post toevoegen en dan opslaan
 //        return newPost.getId();
 //    }
+
 
     @Override
     public long savePost(Post post, Principal principal) {

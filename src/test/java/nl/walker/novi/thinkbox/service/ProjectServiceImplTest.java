@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 
 @SpringBootTest()
@@ -63,14 +64,11 @@ class ProjectServiceImplTest {
 
     }
 
-
-//    @Test
-//    public void saveProjectOK() {
-//        User user1 = new User();
-//        Project newProject = new Project(1L, "title", false, user1);
-//
-//        Mockito.when(projectService.saveProject(any(Project.class))).thenReturn(newProject);
-//
-//    }
+    @Test
+    void deleteProjectTest(){
+        Mockito.when(projectRepository.existsById(anyLong())).thenReturn(true);
+        projectService.deleteProject(1L);
+        Mockito.verify(projectRepository, times(1)).deleteById(1L);
+    }
 
 }
