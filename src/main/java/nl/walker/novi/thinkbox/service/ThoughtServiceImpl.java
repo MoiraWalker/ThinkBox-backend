@@ -43,7 +43,7 @@ public class ThoughtServiceImpl implements ThoughtService {
     @Override
     public long saveThought(Thought thought, long projectId) {
         try {
-            Project project = projectRepository.getOne(projectId);
+            Project project = projectRepository.getOne(thought.getCurrentProjectId());
             thought.setProject(project);
             Thought newThought = thoughtRepository.save(thought);
             return newThought.getId();

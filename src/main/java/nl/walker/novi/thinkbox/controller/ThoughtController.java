@@ -42,8 +42,8 @@ public class ThoughtController {
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/thoughts")
-    public ResponseEntity<Object> saveThought(@RequestBody Thought thought, @RequestBody long currentProjectId) {
-        long newId = thoughtService.saveThought(thought, currentProjectId);
+    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
+        long newId = thoughtService.saveThought(thought, thought.getCurrentProjectId());
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
