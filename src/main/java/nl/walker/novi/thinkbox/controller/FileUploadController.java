@@ -5,8 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @RestController
@@ -20,6 +24,20 @@ public class FileUploadController {
     public void uploadFile(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
         fileUploadService.uploadFile(file);
     }
+
+    @GetMapping("/uploads/{fileName}")
+    public File download(@PathVariable String fileName) throws FileNotFoundException {
+        String uploadDirectory = System.getProperty("user.dir") + "/fileUploads/";
+        try {
+            return ResourceUtils.getFile(uploadDirectory + fileName);
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
     // @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 //    @GetMapping(value = "/uploads/{id}")
 //    public ResponseEntity<Object> getFileUploadById(@PathVariable("id") long id) {
