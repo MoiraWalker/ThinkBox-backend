@@ -1,7 +1,5 @@
 package nl.walker.novi.thinkbox.domain;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;

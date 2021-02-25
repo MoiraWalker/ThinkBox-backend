@@ -1,7 +1,5 @@
 package nl.walker.novi.thinkbox.service;
 import nl.walker.novi.thinkbox.domain.Post;
-
-import java.security.Principal;
 import java.util.List;
 
 public interface PostService {

@@ -1,8 +1,5 @@
 package nl.walker.novi.thinkbox.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,14 +25,6 @@ public class Project {
 
     public Project() {
     }
-
-//    public Project(Long id, String title, Boolean privateView, User user) {
-//        this.id = id;
-//        this.title = title;
-//        this.privateView = privateView;
-//        this.user = user;
-//    }
-
 
     public Project(Long id, String title, Boolean privateView, User user, List<Post> posts) {
         this.id = id;

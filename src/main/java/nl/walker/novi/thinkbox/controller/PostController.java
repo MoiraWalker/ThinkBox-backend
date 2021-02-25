@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,6 +16,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    // Doel: Haal alle post binnen die horen bij een specifiek project
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/posts/project/{projectId}")
     public ResponseEntity<Object> getAllPostsForProject(@PathVariable("projectId") long projectId) {
@@ -39,6 +38,7 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Doel: Sla de post in een specifiek project op
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/posts")
     public ResponseEntity<Object> savePost(@RequestBody Post post, @RequestBody long currentProjectId) {
