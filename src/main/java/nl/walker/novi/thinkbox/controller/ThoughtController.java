@@ -1,6 +1,5 @@
 package nl.walker.novi.thinkbox.controller;
 import nl.walker.novi.thinkbox.domain.Thought;
-import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.service.ThoughtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,17 +17,33 @@ public class ThoughtController {
     @Autowired
     private ThoughtService thoughtService;
 
+    // ### oude getAllThoughts
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @GetMapping(value = "/thoughts")
+//    public ResponseEntity<Object> getAllThoughts() {
+//        List<Thought> thoughts = thoughtService.getAllThoughts();
+//        return new ResponseEntity<>(thoughts, HttpStatus.OK);
+//    }
+
+    // ## oude saveThought
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @PostMapping(value = "/thoughts")
+//    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
+//        long newId = thoughtService.saveThought(thought);
+//        return new ResponseEntity<>(newId, HttpStatus.CREATED);
+//    }
+
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/thoughts")
-    public ResponseEntity<Object> getAllThoughts() {
-        List<Thought> thoughts = thoughtService.getAllThoughts();
+    @GetMapping(value = "/thoughts/project/{projectId}")
+    public ResponseEntity<Object> getAllThoughtsForProject(@PathVariable("projectId") long projectId) {
+        List<Thought> thoughts = thoughtService.getAllThoughtsForProject(projectId);
         return new ResponseEntity<>(thoughts, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/thoughts")
-    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
-        long newId = thoughtService.saveThought(thought);
+    public ResponseEntity<Object> saveThought(@RequestBody Thought thought, @RequestBody long currentProjectId) {
+        long newId = thoughtService.saveThought(thought, currentProjectId);
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 

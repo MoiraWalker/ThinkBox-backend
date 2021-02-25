@@ -17,17 +17,31 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @GetMapping(value = "/works")
+//    public ResponseEntity<Object> getAllWorks() {
+//        List<Work> works = workService.getAllWorks();
+//        return new ResponseEntity<>(works, HttpStatus.OK);
+//    }
+//
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    @PostMapping(value = "/works")
+//    public ResponseEntity<Object> saveWork(@RequestBody Work work) {
+//        long newId = workService.saveWork(work);
+//        return new ResponseEntity<>(newId, HttpStatus.CREATED);
+//    }
+
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/works")
-    public ResponseEntity<Object> getAllWorks() {
-        List<Work> works = workService.getAllWorks();
+    @GetMapping(value = "/works/project/{projectId}")
+    public ResponseEntity<Object> getAllWorksForProject(@PathVariable("projectId") long projectId) {
+        List<Work> works = workService.getAllWorksForProject(projectId);
         return new ResponseEntity<>(works, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping(value = "/works")
-    public ResponseEntity<Object> saveWork(@RequestBody Work work) {
-        long newId = workService.saveWork(work);
+    public ResponseEntity<Object> saveWork(@RequestBody Work work, @RequestBody long currentProjectId) {
+        long newId = workService.saveWork(work, currentProjectId);
         return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 

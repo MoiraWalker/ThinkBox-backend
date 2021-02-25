@@ -1,8 +1,11 @@
 package nl.walker.novi.thinkbox.service;
 
+import nl.walker.novi.thinkbox.domain.Project;
+import nl.walker.novi.thinkbox.domain.Thought;
 import nl.walker.novi.thinkbox.domain.Work;
 import nl.walker.novi.thinkbox.exception.DatabaseErrorException;
 import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
+import nl.walker.novi.thinkbox.repository.ProjectRepository;
 import nl.walker.novi.thinkbox.repository.WorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +18,38 @@ public class WorkServiceImpl implements WorkService {
     @Autowired
     private WorkRepository workRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
+//    @Override
+//    public List<Work> getAllWorks() {
+//        return workRepository.findAll();
+//    }
+//
+//    @Override
+//    public long saveWork(Work work) {
+//        Work newWork = workRepository.save(work);
+//        return newWork.getId();
+//    }
+
     @Override
-    public List<Work> getAllWorks() {
-        return workRepository.findAll();
+    public List<Work> getAllWorksForProject(Long projectId) {
+        Project project = projectRepository.getOne(projectId);
+        List<Work> works = workRepository.findAllByProject(project);
+        return works;
     }
 
     @Override
-    public long saveWork(Work work) {
-        Work newWork = workRepository.save(work);
-        return newWork.getId();
+    public long saveWork(Work work, long projectId) {
+        try {
+            Project project = projectRepository.getOne(projectId);
+            work.setProject(project);
+            Work newWork = workRepository.save(work);
+            return newWork.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 
