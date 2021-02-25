@@ -21,6 +21,12 @@ public class ThoughtServiceImpl implements ThoughtService {
     }
 
     @Override
+    public long saveThought(Thought thought) {
+        Thought newThought = thoughtRepository.save(thought);
+        return newThought.getId();
+    }
+
+    @Override
     public Thought getThoughtById(long id) {
         if (thoughtRepository.existsById(id)) {
             return thoughtRepository.findById(id).orElse(null);
@@ -38,12 +44,6 @@ public class ThoughtServiceImpl implements ThoughtService {
         else {
             throw new RecordNotFoundException();
         }
-    }
-
-    @Override
-    public long saveThought(Thought thought) {
-        Thought newThought = thoughtRepository.save(thought);
-        return newThought.getId();
     }
 
     @Override

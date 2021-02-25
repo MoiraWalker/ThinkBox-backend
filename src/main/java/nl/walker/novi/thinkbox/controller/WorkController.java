@@ -25,6 +25,13 @@ public class WorkController {
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PostMapping(value = "/works")
+    public ResponseEntity<Object> saveWork(@RequestBody Work work) {
+        long newId = workService.saveWork(work);
+        return new ResponseEntity<>(newId, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/works/{id}")
     public ResponseEntity<Object> getWorksById(@PathVariable("id") long id) {
         Work work = workService.getWorkById(id);
@@ -36,13 +43,6 @@ public class WorkController {
     public ResponseEntity<Object> deleteWorks(@PathVariable("id") long id) {
         workService.deleteWork(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PostMapping(value = "/works")
-    public ResponseEntity<Object> saveWork(@RequestBody Work work) {
-        long newId = workService.saveWork(work);
-        return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")

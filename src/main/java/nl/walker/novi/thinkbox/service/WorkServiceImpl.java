@@ -21,6 +21,13 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
+    public long saveWork(Work work) {
+        Work newWork = workRepository.save(work);
+        return newWork.getId();
+    }
+
+
+    @Override
     public Work getWorkById(long id) {
         if (workRepository.existsById(id)) {
             return workRepository.findById(id).orElse(null);
@@ -38,12 +45,6 @@ public class WorkServiceImpl implements WorkService {
         else {
             throw new RecordNotFoundException();
         }
-    }
-
-    @Override
-    public long saveWork(Work work) {
-        Work newWork = workRepository.save(work);
-        return newWork.getId();
     }
 
     @Override

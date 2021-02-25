@@ -5,8 +5,8 @@ import java.util.List;
 public interface WorkService {
 
     List<Work> getAllWorks();
+    long saveWork(Work work);
     Work getWorkById(long id);
     void deleteWork(long id);
-    long saveWork(Work work);
     void updateWork(long id, Work work);
 }

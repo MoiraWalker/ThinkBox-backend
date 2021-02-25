@@ -26,6 +26,13 @@ public class ThoughtController {
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PostMapping(value = "/thoughts")
+    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
+        long newId = thoughtService.saveThought(thought);
+        return new ResponseEntity<>(newId, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/thoughts/{id}")
     public ResponseEntity<Object> getThoughtsById(@PathVariable("id") long id) {
         Thought thought = thoughtService.getThoughtById(id);
@@ -38,14 +45,6 @@ public class ThoughtController {
         thoughtService.deleteThought(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PostMapping(value = "/thoughts")
-    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
-        long newId = thoughtService.saveThought(thought);
-        return new ResponseEntity<>(newId, HttpStatus.CREATED);
-    }
-
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PutMapping(value = "/thoughts/{id}")

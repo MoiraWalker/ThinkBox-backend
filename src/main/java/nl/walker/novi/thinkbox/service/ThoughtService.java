@@ -5,8 +5,8 @@ import java.util.List;
 public interface ThoughtService {
 
     List<Thought> getAllThoughts();
+    long saveThought(Thought thought);
     Thought getThoughtById(long id);
     void deleteThought(long id);
-    long saveThought(Thought thought);
     void updateThought(long id, Thought thought);
 }

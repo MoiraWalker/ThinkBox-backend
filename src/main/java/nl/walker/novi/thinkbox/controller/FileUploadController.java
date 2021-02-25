@@ -20,33 +20,5 @@ public class FileUploadController {
     public void uploadFile(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
         fileUploadService.uploadFile(file);
     }
-    // @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-//    @GetMapping(value = "/uploads/{id}")
-//    public ResponseEntity<Object> getFileUploadById(@PathVariable("id") long id) {
-//        FileUpload fileUpload = fileUploadService.getFileUploadById(id);
-//        return new ResponseEntity<>(fileUpload, HttpStatus.OK);
-//    }
-//
-//    //    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-//    @DeleteMapping(value = "/uploads/{id}")
-//    public ResponseEntity<Object> deleteFileUpload(@PathVariable("id") long id) {
-//        fileUploadService.deleteFileUpload(id);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
-//
-//    //    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-//    @PostMapping(value = "/uploads")
-//    public ResponseEntity<Object> saveFileUpload(@RequestBody FileUpload fileUpload) {
-//        long newId = fileUploadService.saveFileUpload(fileUpload);
-//        return new ResponseEntity<>(newId, HttpStatus.CREATED);
-//    }
-//
-//    //    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-//    @PutMapping(value = "/uploads/{id}")
-//    public ResponseEntity<Object> updateFileUpload(@PathVariable("id") int id, @RequestBody FileUpload fileUpload) {
-//        fileUploadService.updateFileUpload(id, fileUpload);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-//
 
 }
