@@ -6,11 +6,7 @@ import java.io.File;
 public class Work extends Post {
     private String description;
     private String link;
-    private String fileName;
-
-//    @Transient
-//    private File fileupload;
-//    private String fileuploadName;
+    private String fileUpload;
 
     public Work() {
 
@@ -20,11 +16,11 @@ public class Work extends Post {
         this.description = description;
     }
 
-    public Work(String title, PostType type, String description, String link, String fileName) {
+    public Work(String title, PostType type, String description, String link, String fileUpload) {
         super(title, type);
         this.description = description;
         this.link = link;
-        this.fileName = fileName;
+        this.fileUpload = fileUpload;
     }
 
     public String getDescription() {
@@ -43,11 +39,11 @@ public class Work extends Post {
         this.link = link;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFileUpload() {
+        return fileUpload;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFileUpload(String fileUpload) {
+        this.fileUpload = fileUpload;
     }
 }

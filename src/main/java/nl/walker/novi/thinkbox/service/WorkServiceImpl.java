@@ -55,7 +55,7 @@ public class WorkServiceImpl implements WorkService {
                 existingWork.setType(work.getType());
                 existingWork.setLink(work.getLink());
                 existingWork.setDescription(work.getDescription());
-                existingWork.setFileName(work.getFileName());
+                existingWork.setFileUpload(work.getFileUpload());
                 workRepository.save(existingWork);
             }
             catch (Exception ex) {
