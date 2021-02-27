@@ -6,6 +6,7 @@ import java.io.File;
 public class Work extends Post {
     private String description;
     private String link;
+    @Column(length =  2000000)
     private String fileUpload;
 
     public Work() {
