@@ -20,7 +20,7 @@ public class Project {
     @JsonIgnore
     private User user;
 
-    @OneToMany( mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Post> posts;
 
     public Project() {
