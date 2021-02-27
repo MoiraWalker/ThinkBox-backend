@@ -1,6 +1,5 @@
 package nl.walker.novi.thinkbox.domain;
 import javax.persistence.*;
-import java.io.File;
 
 @Entity
 public class Work extends Post {
@@ -13,12 +12,8 @@ public class Work extends Post {
 
     }
 
-    public Work(String description) {
-        this.description = description;
-    }
-
-    public Work(String title, PostType type, String description, String link, String fileUpload) {
-        super(title, type);
+    public Work(long id, String title, long currentProjectId, PostType type, String description, String link, String fileUpload) {
+        super(id, title, currentProjectId, type);
         this.description = description;
         this.link = link;
         this.fileUpload = fileUpload;

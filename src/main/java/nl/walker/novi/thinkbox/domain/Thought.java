@@ -1,7 +1,5 @@
 package nl.walker.novi.thinkbox.domain;
-
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
 public class Thought extends Post {
@@ -11,12 +9,8 @@ public class Thought extends Post {
 
     }
 
-    public Thought(String description) {
-        this.description = description;
-    }
-
-    public Thought(String title, PostType type, String description) {
-        super(title, type);
+    public Thought(long id, String title, long currentProjectId, PostType type, String description) {
+        super(id, title, currentProjectId, type);
         this.description = description;
     }
 
@@ -27,4 +21,6 @@ public class Thought extends Post {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

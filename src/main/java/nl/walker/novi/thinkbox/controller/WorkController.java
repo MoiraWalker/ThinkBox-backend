@@ -17,35 +17,35 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/works")
-    public ResponseEntity<Object> getAllWorks() {
-        List<Work> works = workService.getAllWorks();
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @GetMapping(value = "/works/project/{projectId}")
+    public ResponseEntity<Object> getAllWorksForProject(@PathVariable("projectId") long projectId) {
+        List<Work> works = workService.getAllWorksForProject(projectId);
         return new ResponseEntity<>(works, HttpStatus.OK);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PostMapping(value = "/works")
+    public ResponseEntity<Object> saveWork(@RequestBody Work work) {
+        long newId = workService.saveWork(work, work.getCurrentProjectId());
+        return new ResponseEntity<>(newId, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping(value = "/works/{id}")
     public ResponseEntity<Object> getWorksById(@PathVariable("id") long id) {
         Work work = workService.getWorkById(id);
         return new ResponseEntity<>(work, HttpStatus.OK);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping(value = "/works/{id}")
     public ResponseEntity<Object> deleteWorks(@PathVariable("id") long id) {
         workService.deleteWork(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PostMapping(value = "/works")
-    public ResponseEntity<Object> saveWork(@RequestBody Work work) {
-        long newId = workService.saveWork(work);
-        return new ResponseEntity<>(newId, HttpStatus.CREATED);
-    }
-
-//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PutMapping(value = "/works/{id}")
     public ResponseEntity<Object> updateWork(@PathVariable("id") int id, @RequestBody Work work) {
         workService.updateWork(id, work);

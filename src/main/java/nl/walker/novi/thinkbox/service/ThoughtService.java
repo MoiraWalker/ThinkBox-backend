@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface ThoughtService {
 
-    List<Thought> getAllThoughts();
+    List<Thought> getAllThoughtsForProject(Long projectId);
+    long saveThought(Thought thought, long projectId);
     Thought getThoughtById(long id);
     void deleteThought(long id);
-    long saveThought(Thought thought);
     void updateThought(long id, Thought thought);
 }

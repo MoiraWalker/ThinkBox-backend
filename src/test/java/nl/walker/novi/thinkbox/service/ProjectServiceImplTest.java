@@ -1,6 +1,7 @@
 package nl.walker.novi.thinkbox.service;
 
 import nl.walker.novi.thinkbox.ThinkboxApplication;
+import nl.walker.novi.thinkbox.domain.Post;
 import nl.walker.novi.thinkbox.domain.Project;
 import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.repository.ProjectRepository;
@@ -17,6 +18,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,14 +56,16 @@ class ProjectServiceImplTest {
         User user1 = new User();
         Project p = new Project();
         p.setId(1L);
+        List<Post> posts = new ArrayList<>();
 
-        Project project1 = new Project(1L, "title", false, user1);
+        Project project1 = new Project(1L, "title", false, user1, posts);
         Mockito.when(projectRepository.existsById(anyLong())).thenReturn(true);
         Mockito.when(projectRepository.findById(anyLong())).thenReturn(Optional.of(p));
 
         Project project = projectService.getProjectById(1);
 
         assertEquals(1L, project.getId());
+
     }
 
     @Test

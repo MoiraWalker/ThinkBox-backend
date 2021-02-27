@@ -1,15 +1,11 @@
 package nl.walker.novi.thinkbox.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Project {
 
-//    public Object saveProject;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,21 +16,22 @@ public class Project {
     @Column(name = "private_view")
     private Boolean privateView;
 
-    @ManyToOne (fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     private User user;
 
-    @OneToMany
+    @OneToMany( mappedBy = "project")
     private List<Post> posts;
 
     public Project() {
     }
 
-    public Project(Long id, String title, Boolean privateView, User user) {
+    public Project(Long id, String title, Boolean privateView, User user, List<Post> posts) {
         this.id = id;
         this.title = title;
         this.privateView = privateView;
         this.user = user;
+        this.posts = posts;
     }
 
     public User getUser() {
@@ -69,4 +66,11 @@ public class Project {
         this.privateView = privateView;
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 }

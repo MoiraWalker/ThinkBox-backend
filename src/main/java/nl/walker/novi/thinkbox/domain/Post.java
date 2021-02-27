@@ -1,6 +1,6 @@
 package nl.walker.novi.thinkbox.domain;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -13,21 +13,26 @@ public class Post {
     @Column(name = "title" )
     private String title;
 
+    @Column(name = "current_project_id" )
+    private long currentProjectId;
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "post_type" )
     private PostType type;
 
-    // TODO Annotatie en getters en setters
-    //    private Project project;
+    @ManyToOne
+    @JsonBackReference
+    private Project project;
 
     public Post(){
     }
 
-    public Post(String title, PostType type) {
+    public Post(long id, String title, long currentProjectId, PostType type) {
+        this.id = id;
         this.title = title;
+        this.currentProjectId = currentProjectId;
         this.type = type;
     }
-
 
     public PostType getType() {
         return type;
@@ -51,5 +56,21 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public long getCurrentProjectId() {
+        return currentProjectId;
+    }
+
+    public void setCurrentProjectId(long currentProjectId) {
+        this.currentProjectId = currentProjectId;
     }
 }

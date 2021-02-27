@@ -1,6 +1,5 @@
 package nl.walker.novi.thinkbox.controller;
 import nl.walker.novi.thinkbox.domain.Thought;
-import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.service.ThoughtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +18,17 @@ public class ThoughtController {
     private ThoughtService thoughtService;
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping(value = "/thoughts")
-    public ResponseEntity<Object> getAllThoughts() {
-        List<Thought> thoughts = thoughtService.getAllThoughts();
+    @GetMapping(value = "/thoughts/project/{projectId}")
+    public ResponseEntity<Object> getAllThoughtsForProject(@PathVariable("projectId") long projectId) {
+        List<Thought> thoughts = thoughtService.getAllThoughtsForProject(projectId);
         return new ResponseEntity<>(thoughts, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PostMapping(value = "/thoughts")
+    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
+        long newId = thoughtService.saveThought(thought, thought.getCurrentProjectId());
+        return new ResponseEntity<>(newId, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
@@ -38,14 +44,6 @@ public class ThoughtController {
         thoughtService.deleteThought(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PostMapping(value = "/thoughts")
-    public ResponseEntity<Object> saveThought(@RequestBody Thought thought) {
-        long newId = thoughtService.saveThought(thought);
-        return new ResponseEntity<>(newId, HttpStatus.CREATED);
-    }
-
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PutMapping(value = "/thoughts/{id}")
