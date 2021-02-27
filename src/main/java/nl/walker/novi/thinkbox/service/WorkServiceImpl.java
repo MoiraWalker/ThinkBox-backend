@@ -21,17 +21,6 @@ public class WorkServiceImpl implements WorkService {
     @Autowired
     private ProjectRepository projectRepository;
 
-//    @Override
-//    public List<Work> getAllWorks() {
-//        return workRepository.findAll();
-//    }
-//
-//    @Override
-//    public long saveWork(Work work) {
-//        Work newWork = workRepository.save(work);
-//        return newWork.getId();
-//    }
-
     @Override
     public List<Work> getAllWorksForProject(Long projectId) {
         Project project = projectRepository.getOne(projectId);
@@ -42,7 +31,7 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public long saveWork(Work work, long projectId) {
         try {
-            Project project = projectRepository.getOne(projectId);
+            Project project = projectRepository.getOne(work.getCurrentProjectId());
             work.setProject(project);
             Work newWork = workRepository.save(work);
             return newWork.getId();

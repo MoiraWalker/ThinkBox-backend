@@ -18,8 +18,6 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    // TODO
-    // Doel: Haal alle post binnen die horen bij een specifiek project
     @Override
     public List<Post> getAllPostsForProject(Long projectId) {
         Project project = projectRepository.getOne(projectId);
@@ -27,14 +25,10 @@ public class PostServiceImpl implements PostService {
         return posts;
     }
 
-    // TODO project ophalen, post toevoegen en dan opslaan
-    // Doel: Sla de post in een specifiek project op
     @Override
     public long savePost(Post post, long projectId) {
         try {
-            Project project = projectRepository.getOne(projectId);
-//        project.getPosts().add(post);
-//        projectRepository.save(project);
+            Project project = projectRepository.getOne(post.getCurrentProjectId());
             post.setProject(project);
             Post newPost = postRepository.save(post);
             return newPost.getId();

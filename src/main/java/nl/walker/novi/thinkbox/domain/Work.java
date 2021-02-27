@@ -1,6 +1,5 @@
 package nl.walker.novi.thinkbox.domain;
 import javax.persistence.*;
-import java.io.File;
 
 @Entity
 public class Work extends Post {
@@ -16,13 +15,6 @@ public class Work extends Post {
         this.description = description;
         this.link = link;
     }
-
-    //  ##### constructor met project
-//    public Work(long id, String title, String projectId, PostType type, Project project, String description, String link) {
-//        super(id, title, projectId, type, project);
-//        this.description = description;
-//        this.link = link;
-//    }
 
     public String getDescription() {
         return description;

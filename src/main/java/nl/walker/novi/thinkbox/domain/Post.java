@@ -58,7 +58,6 @@ public class Post {
         this.title = title;
     }
 
-
     public Project getProject() {
         return project;
     }

@@ -21,18 +21,6 @@ public class ThoughtServiceImpl implements ThoughtService {
     @Autowired
     private ProjectRepository projectRepository;
 
-//    @Override
-//    public List<Thought> getAllThoughts() {
-//        return thoughtRepository.findAll();
-//    }
-
-//    @Override
-//    public long saveThought(Thought thought) {
-//        Thought newThought = thoughtRepository.save(thought);
-//        return newThought.getId();
-//    }
-//
-
     @Override
     public List<Thought> getAllThoughtsForProject(Long projectId) {
         Project project = projectRepository.getOne(projectId);
