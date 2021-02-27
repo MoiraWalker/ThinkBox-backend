@@ -1,5 +1,4 @@
 package nl.walker.novi.thinkbox.service;
-import nl.walker.novi.thinkbox.domain.Post;
 import nl.walker.novi.thinkbox.domain.Thought;
 import java.util.List;
 

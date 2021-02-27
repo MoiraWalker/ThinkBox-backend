@@ -21,4 +21,6 @@ public class Thought extends Post {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }
