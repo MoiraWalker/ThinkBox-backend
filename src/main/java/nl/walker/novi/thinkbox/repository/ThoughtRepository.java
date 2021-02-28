@@ -1,6 +1,4 @@
 package nl.walker.novi.thinkbox.repository;
-
-import nl.walker.novi.thinkbox.domain.Post;
 import nl.walker.novi.thinkbox.domain.Project;
 import nl.walker.novi.thinkbox.domain.Thought;
 import org.springframework.data.jpa.repository.JpaRepository;

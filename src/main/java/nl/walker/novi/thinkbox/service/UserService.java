@@ -1,7 +1,5 @@
 package nl.walker.novi.thinkbox.service;
 import nl.walker.novi.thinkbox.domain.User;
-import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 public interface UserService {

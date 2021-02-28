@@ -1,7 +1,6 @@
 package nl.walker.novi.thinkbox.controller;
 
 import nl.walker.novi.thinkbox.domain.Project;
-import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

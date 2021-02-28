@@ -34,5 +34,3 @@ public class TestController {
         return testService.generateAdminContent();
     }
 }
-
-// dit moet eruit, testserice dat je iets krijgt

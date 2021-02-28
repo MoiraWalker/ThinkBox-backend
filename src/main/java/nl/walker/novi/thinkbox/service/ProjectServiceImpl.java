@@ -1,17 +1,13 @@
 package nl.walker.novi.thinkbox.service;
 
 import nl.walker.novi.thinkbox.domain.Project;
-import nl.walker.novi.thinkbox.domain.Thought;
 import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.exception.DatabaseErrorException;
 import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
 import nl.walker.novi.thinkbox.repository.ProjectRepository;
 import nl.walker.novi.thinkbox.repository.UserRepository;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -26,18 +22,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private UserRepository userRepository;
-
-//    @Override
-//    public List<Project> getAllProjects() {
-//        // De token binnenkrijgen.
-//        // Gebruikersnaam uit token halen
-//        // Id ophalen die bij gebruikersnaam hoort.
-//        // Via projectrepository findByUserId();
-//
-//        List<Project> projects = projectRepository.findAll();
-//
-//        return projects;
-//    }
 
     @Override
     public List<Project> getAllProjectsForUser(Principal principal) {

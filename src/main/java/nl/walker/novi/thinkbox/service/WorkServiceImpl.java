@@ -1,7 +1,6 @@
 package nl.walker.novi.thinkbox.service;
 
 import nl.walker.novi.thinkbox.domain.Project;
-import nl.walker.novi.thinkbox.domain.Thought;
 import nl.walker.novi.thinkbox.domain.Work;
 import nl.walker.novi.thinkbox.exception.DatabaseErrorException;
 import nl.walker.novi.thinkbox.exception.RecordNotFoundException;
