@@ -5,30 +5,21 @@ import nl.walker.novi.thinkbox.domain.Post;
 import nl.walker.novi.thinkbox.domain.Project;
 import nl.walker.novi.thinkbox.domain.User;
 import nl.walker.novi.thinkbox.repository.ProjectRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 
 
@@ -41,12 +32,6 @@ class ProjectServiceImplTest {
 
     @Mock
     private ProjectRepository projectRepository;
-
-
-    @BeforeEach
-    void setUp() {
-//        User user1 = new User();
-    }
 
     @Mock
     Project project;
