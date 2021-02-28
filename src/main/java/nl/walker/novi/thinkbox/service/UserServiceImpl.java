@@ -45,13 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long saveUser(User user) {
-        User newUser = userRepository.save(user);
-        return newUser.getId();
-    }
-
-    @Override
-    public void updateUser(long id, User user) {
+    public void updateEmail(long id, User user) {
         if (userRepository.existsById(id)) {
             try {
                 User existingUser = userRepository.findById(id).orElse(null);
@@ -65,6 +59,30 @@ public class UserServiceImpl implements UserService {
         else {
             throw new RecordNotFoundException();
         }
+    }
+
+    @Override
+    public void updateUser(long id, User user) {
+        if (userRepository.existsById(id)) {
+            try {
+                User existingUser = userRepository.findById(id).orElse(null);
+                existingUser.setEmail(user.getEmail());
+                existingUser.setUsername(user.getUsername());
+                userRepository.save(existingUser);
+            }
+            catch (Exception ex) {
+                throw new DatabaseErrorException();
+            }
+        }
+        else {
+            throw new RecordNotFoundException();
+        }
+    }
+
+    @Override
+    public long saveUser(User user) {
+        User newUser = userRepository.save(user);
+        return newUser.getId();
     }
 
 }

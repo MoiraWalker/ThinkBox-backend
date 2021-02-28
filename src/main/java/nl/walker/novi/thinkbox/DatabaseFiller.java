@@ -41,21 +41,5 @@ public class DatabaseFiller implements CommandLineRunner {
         user.setRole(rollen);
         authorizationService.registerUser(user);
 
-        SignupRequest user2 = new SignupRequest();
-        user2.setUsername("user2");
-        user2.setEmail("user2@user.nl");
-        user2.setPassword("123456");
-        rollen.remove("admin");
-        rollen.add("user");
-        user2.setRole(rollen);
-        authorizationService.registerUser(user2);
-
-
-
-//        Project project = new Project();
-//        project.setTitle("Project admin");
-//        project.setPrivateView(true);
-
-
     }
 }
