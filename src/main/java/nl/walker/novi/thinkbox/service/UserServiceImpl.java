@@ -55,9 +55,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.existsById(id)) {
             try {
                 User existingUser = userRepository.findById(id).orElse(null);
-                existingUser.setUsername(user.getUsername());
                 existingUser.setEmail(user.getEmail());
-                existingUser.setPassword(user.getPassword());
                 userRepository.save(existingUser);
             }
             catch (Exception ex) {
